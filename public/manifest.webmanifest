@@ -1,0 +1,17 @@
+{
+  "name": "One Journey",
+  "short_name": "OneJourney",
+  "description": "Unified multimodal journey planner for Ahmedabad & Gandhinagar (Metro + BRTS + AMTS)",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080D1C",
+  "theme_color": "#080D1C",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

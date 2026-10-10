@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%230E1630'/%3E%3Cpath d='M9 31V11l11 14' fill='none' stroke='%233B82F6' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M20 25l11-14v20' fill='none' stroke='%23FACC15' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='20' cy='25' r='5' fill='%230E1630' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
+<title>Metro Saathi | Ahmedabad and Gandhinagar Metro</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@400;500;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#080D1C;--bg2:#0E1630;--card:rgba(255,255,255,.06);--bd:rgba(255,255,255,.13);--tx:#EAF0FF;--mut:#9FB0D6;--acc:#22D3EE;--acc2:#A3E635;--ink:#05101F;--st:#080D1C;--blue:#3B82F6;--red:#EF4444;--yellow:#FACC15;--violet:#A78BFA;--glow1:rgba(34,211,238,.18);--glow2:rgba(167,139,250,.14)}
+[data-theme=light]{--bg:#F3F6FD;--bg2:#fff;--card:#fff;--bd:#D9E1F2;--tx:#0B1430;--mut:#51608A;--acc:#0891B2;--acc2:#4D7C0F;--ink:#fff;--st:#fff;--blue:#1D4ED8;--red:#DC2626;--yellow:#CA8A04;--violet:#7C3AED;--glow1:rgba(8,145,178,.10);--glow2:rgba(124,58,237,.07)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Manrope,system-ui,sans-serif;color:var(--tx);background:radial-gradient(900px 500px at 85% 0,var(--glow1),transparent),radial-gradient(700px 500px at 0 40%,var(--glow2),transparent),var(--bg);background-attachment:fixed;min-height:100vh;transition:background .3s,color .3s}
+h1,h2,h3,.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 84%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.hin{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:1240px;margin:0 auto;padding:10px 20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--tx);flex:none}
+.brand svg{width:42px;height:42px;display:block;flex:none}
+.brand .wm{display:block;font-family:Unbounded,sans-serif;font-weight:700;font-size:17px;line-height:1;white-space:nowrap}.brand .wm b{color:var(--acc)}
+.brand small{display:block;font:600 11px Manrope,sans-serif;color:var(--mut);margin-top:5px}
+nav{display:flex;gap:4px}
+nav a{color:var(--mut);text-decoration:none;padding:10px 15px;border-radius:99px;font-weight:600;font-size:14px;white-space:nowrap}
+nav a:hover{color:var(--tx)}
+nav a.on{background:var(--acc);color:var(--ink)}
+.actions{display:flex;gap:8px;align-items:center;flex:none}
+.hl{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--tx);border:1px solid var(--bd);border-radius:99px;min-height:44px;padding:0 14px;font-size:13px;font-weight:700;white-space:nowrap}
+.hl svg{color:var(--acc)}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.btn{border:0;border-radius:14px;background:linear-gradient(90deg,var(--acc),var(--acc2));color:var(--ink);font-weight:700;font-size:16px;min-height:50px;padding:0 22px}
+.ghost{background:transparent;border:1px solid var(--bd);color:var(--tx);border-radius:99px;padding:0 16px;min-height:44px;font-weight:600;font-size:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:20px;margin-bottom:16px}
+.mut{color:var(--mut)}.col{min-width:0}
+.top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;padding:12px 0 8px;align-items:start}
+h1{font-size:clamp(30px,4.6vw,54px);line-height:1.08}h1 span{color:var(--acc)}
+h2{font-size:20px;margin-bottom:12px}
+.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--bd);border-radius:99px;padding:8px 14px;font-size:13px;color:var(--mut);margin-bottom:16px}
+.dot{width:8px;height:8px;border-radius:4px;background:var(--acc2);animation:pl 1.6s infinite}
+@keyframes pl{50%{opacity:.3}}
+.fld{position:relative;display:block;margin-bottom:12px;font-size:13px;color:var(--mut)}
+input,select{width:100%;margin-top:6px;background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:14px 56px 14px 14px;color:var(--tx);font:700 16px Manrope,sans-serif;min-height:50px}
+select{padding-right:14px}
+.mic{position:absolute;right:6px;bottom:6px;width:44px;height:44px;border-radius:12px;border:0;background:var(--acc);color:var(--ink);display:grid;place-items:center}
+.modes{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 16px}
+.modes label{cursor:pointer}.modes input{display:none}
+.modes span{display:block;border:1px solid var(--bd);border-radius:99px;padding:11px 15px;font-size:14px;color:var(--mut);font-weight:600}
+.modes input:checked+span{background:var(--acc);border-color:var(--acc);color:var(--ink)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.between{justify-content:space-between}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.stats div{background:var(--bg2);border-radius:16px;padding:12px;font-size:12px;color:var(--mut)}.stats b{display:block;font-size:20px;color:var(--tx);font-family:Unbounded,sans-serif}
+ol.legs{list-style:none;margin:0 0 16px;padding:0}
+ol.legs li{border-left:5px solid var(--c);padding:6px 0 6px 12px;margin-bottom:8px;font-size:14px}
+.coach{display:flex;gap:6px;margin:8px 0}.coach i{flex:1;height:34px;border-radius:9px}
+.badge{display:inline-block;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700;color:#05101F}
+.eco{background:rgba(163,230,53,.14);border-radius:14px;padding:12px;font-size:14px;margin-bottom:14px}
+.mapwrap{overflow:auto;border-radius:16px;max-height:78vh;-webkit-overflow-scrolling:touch;background:var(--bg2);border:1px solid var(--bd)}
+svg#map{display:block;width:100%;min-width:860px;height:auto}
+svg .lbl{fill:var(--tx);font:600 12.5px Manrope,sans-serif;pointer-events:none;paint-order:stroke;stroke:var(--bg2);stroke-width:4px;stroke-linejoin:round}
+[data-st]{cursor:pointer}
+.flow{animation:fl 1s linear infinite}@keyframes fl{to{stroke-dashoffset:-32}}
+.tr{cursor:pointer}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--mut);margin-top:10px}
+.legend i{display:inline-block;width:18px;height:6px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.zoom{display:flex;gap:6px}.zoom .ghost{min-width:44px;padding:0 12px}
+.alert{background:rgba(244,63,94,.15);border:1px solid #F43F5E;border-radius:14px;padding:12px;font-size:14px;margin-top:12px}
+.brow{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid var(--bd);font-size:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.sgrid .card{margin:0}
+.lchip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;border:1px solid var(--bd);border-radius:99px;padding:4px 10px;margin:0 6px 6px 0}
+.lchip i{width:10px;height:10px;border-radius:5px;display:block}
+.chat{height:min(420px,52vh);overflow:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.msg{max-width:86%;padding:11px 14px;border-radius:18px;font-size:15px;line-height:1.45;white-space:pre-wrap}
+.me{align-self:flex-end;background:var(--acc);color:var(--ink);border-bottom-right-radius:4px}
+.bot{align-self:flex-start;background:var(--bg2);border:1px solid var(--bd);border-bottom-left-radius:4px}
+.sugg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tk{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.qr{background:#fff;padding:8px;border-radius:12px}
+.voice{position:fixed;inset:0;background:rgba(5,10,25,.8);backdrop-filter:blur(6px);display:grid;place-items:center;z-index:70}
+.voice[hidden]{display:none}
+.vbox{background:var(--bg2);border:1px solid var(--bd);border-radius:28px;padding:30px;text-align:center;width:min(380px,90vw)}
+.bars{display:flex;gap:6px;align-items:center;justify-content:center;height:60px}
+.bars i{display:block;width:6px;height:10px;border-radius:3px;background:var(--acc);animation:wave 1s ease-in-out infinite}
+@keyframes wave{50%{height:50px}}
+.ring{width:84px;height:84px;margin:0 auto 16px;border-radius:50%;background:var(--acc);display:grid;place-items:center;color:var(--ink);box-shadow:0 0 0 0 var(--acc);animation:ping 1.4s infinite}
+@keyframes ping{to{box-shadow:0 0 0 28px transparent}}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:12px 18px;border-radius:99px;font-weight:600;font-size:14px;z-index:80;opacity:0;pointer-events:none;transition:opacity .25s;max-width:90vw;text-align:center}
+#toast.on{opacity:1}
+footer{border-top:1px solid var(--bd);margin-top:24px;background:var(--bg2)}
+.fin{max-width:1240px;margin:0 auto;padding:36px 20px 20px}
+.fgrid{display:grid;grid-template-columns:1.3fr 1fr 1.4fr 1.3fr;gap:30px}
+.fcol h3{font-size:13px;margin:0 0 14px}
+.fcol p,.fcol li{font-size:14px;line-height:1.6;color:var(--mut);margin:0 0 8px}
+.fcol ul{list-style:none;margin:0;padding:0}
+.fcol a{color:var(--mut);text-decoration:none}.fcol a:hover{color:var(--tx);text-decoration:underline}
+.help{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:14px 16px;margin-bottom:12px}
+.help small{display:block;color:var(--mut);font-size:12px}
+.help a.big{display:block;font:700 19px Unbounded,sans-serif;color:var(--tx);text-decoration:none;margin:4px 0}
+.help a.big:hover{color:var(--acc)}
+.sos{display:flex;gap:10px;flex-wrap:wrap}
+.sos a{display:inline-flex;flex-direction:column;border:1px solid #F43F5E;border-radius:14px;padding:8px 14px;color:var(--tx);min-width:92px}
+.sos b{font:700 18px Unbounded,sans-serif;color:#F43F5E}.sos span{font-size:12px}
+.fbot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--bd);margin-top:26px;padding-top:16px;font-size:12px;color:var(--mut);line-height:1.6}
+.fbot a{color:var(--mut)}
+@media(max-width:1000px){.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.fgrid{grid-template-columns:1fr}}
+@media(max-width:900px){.top{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1120px){.hl{display:none}}
+@media(max-width:960px){
+ .hin{flex-wrap:wrap;row-gap:6px}
+ .actions{margin-left:auto}
+ nav{order:3;width:100%;justify-content:space-between;gap:2px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+ nav::-webkit-scrollbar{display:none}
+ nav a{flex:1 1 auto;text-align:center;padding:10px 8px;font-size:13px}
+}
+@media(max-width:700px){
+ .hin{padding:8px 12px 4px}.wrap{padding:0 16px}
+ nav a{padding:10px 2px;font-size:12.5px}
+ .brand small{display:none}.brand svg{width:38px;height:38px}.brand .wm{font-size:15px}
+ .card{padding:16px;border-radius:18px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header id="hd">
+  <div class="hin">
+    <a class="brand" href="#/" aria-label="Metro Saathi home"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="11" fill="var(--bg2)" stroke="var(--bd)"/><path d="M9 31V11l11 14" fill="none" stroke="var(--blue)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 25l11-14v20" fill="none" stroke="var(--yellow)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="25" r="5" fill="var(--bg2)" stroke="var(--tx)" stroke-width="3"/><circle cx="9" cy="31" r="2.3" fill="var(--red)"/><circle cx="31" cy="31" r="2.3" fill="var(--violet)"/></svg><span><span class="wm">METRO<b>/</b>SAATHI</span><small>Ahmedabad · Gandhinagar</small></span></a>
+    <nav id="nav" aria-label="Main"><a href="#/">Route</a><a href="#/live">Live</a><a href="#/stations">Stations</a><a href="#/ai">Assistant</a><a href="#/tickets">Tickets</a></nav>
+    <div class="actions"><a class="hl" href="tel:+917922960123" aria-label="Call metro helpline"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>079-2296 0123</a><button class="ghost" id="tg">Light mode</button></div>
+  </div>
+</header>
+<main id="app" class="wrap"></main>
+<footer>
+ <div class="fin">
+  <div class="fgrid">
+   <div class="fcol">
+    <a class="brand" href="#/" aria-label="Metro Saathi home" style="margin-bottom:14px"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="11" fill="var(--bg2)" stroke="var(--bd)"/><path d="M9 31V11l11 14" fill="none" stroke="var(--blue)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 25l11-14v20" fill="none" stroke="var(--yellow)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="25" r="5" fill="var(--bg2)" stroke="var(--tx)" stroke-width="3"/><circle cx="9" cy="31" r="2.3" fill="var(--red)"/><circle cx="31" cy="31" r="2.3" fill="var(--violet)"/></svg><span><span class="wm">METRO<b>/</b>SAATHI</span><small>Ahmedabad · Gandhinagar</small></span></a>
+    <p>A smart companion for the Ahmedabad and Gandhinagar metro. Plan routes, check crowd levels, track trains and book QR tickets.</p>
+    <p><b style="color:var(--tx)">Not an official GMRC app.</b> Built for a hackathon demo using public information.</p>
+   </div>
+   <div class="fcol">
+    <h3>Quick links</h3>
+    <ul><li><a href="#/">Route planner</a></li><li><a href="#/live">Live tracker</a></li><li><a href="#/stations">All stations</a></li><li><a href="#/ai">Assistant</a></li><li><a href="#/tickets">My tickets</a></li></ul>
+    <h3 style="margin-top:18px">Information</h3>
+    <ul><li><a href="#/about">About us</a></li><li><a href="#/faq">FAQs</a></li><li><a href="#/accessibility">Accessibility</a></li><li><a href="#/privacy">Privacy policy</a></li><li><a href="#/terms">Terms of use</a></li></ul>
+   </div>
+   <div class="fcol">
+    <h3>Help and support</h3>
+    <div class="help"><small>Passenger helpline (GMRC Customer Care)</small><a class="big" href="tel:+917922960123">+91-79-22960123</a><small>Complaints, suggestions, feedback and lost property</small></div>
+    <ul><li>Email: <a href="mailto:care@gujaratmetrorail.com">care@gujaratmetrorail.com</a></li>
+    <li>General enquiries: <a href="tel:+917923248572">+91-79-23248572</a><br><a href="mailto:info@gujaratmetrorail.com">info@gujaratmetrorail.com</a></li>
+    <li>Lost and found: Apparel Park Depot, Ahmedabad. Office hours 10:30 to 18:10. Or report at any station.</li>
+    <li>Official website: <a href="https://www.gujaratmetrorail.com" target="_blank" rel="noopener">gujaratmetrorail.com</a></li></ul>
+   </div>
+   <div class="fcol">
+    <h3>Emergency</h3>
+    <div class="sos"><a href="tel:112"><b>112</b><span>Police, fire, ambulance</span></a><a href="tel:181"><b>181</b><span>Women helpline</span></a></div>
+    <p style="margin-top:10px">In an emergency inside a station or train, alert the station staff or train operator straight away.</p>
+    <h3 style="margin-top:18px">Offices</h3>
+    <ul><li><b style="color:var(--tx)">Registered office:</b> Block No. 1, First Floor, Karmayogi Bhavan, Sector 10/A, Gandhinagar 382010</li>
+    <li><b style="color:var(--tx)">Operations office:</b> Apparel Park Depot, Rajpur Hirpur, Gomtipur, Ahmedabad 380021</li></ul>
+   </div>
+  </div>
+  <div class="fbot"><span>© 2026 Metro Saathi. Station data from GMRC public sources, checked October 2026. Fares are estimates and train positions are simulated. Always confirm fares and timings with GMRC before you travel.</span><a href="#" id="totop">Back to top</a></div>
+ </div>
+</footer>
+
+<div id="voice" class="voice" hidden role="dialog" aria-label="Voice search"><div class="vbox">
+  <div class="ring"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
+  <div class="bars" id="bars"></div>
+  <p id="vtext" class="mut" style="min-height:48px">Listening...</p>
+  <button class="ghost" id="vx">Cancel</button>
+</div></div>
+<div id="toast" role="status"></div>
+
+<script>
+/* ============ 1. DATA: Ahmedabad + Gandhinagar metro (53 operational stations, 4 lines) ============ */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const LINES={
+  blue:{name:'Blue Line',color:'var(--blue)',km:21.23,st:['Thaltej Gam','Thaltej','Doordarshan Kendra','Gurukul Road','Gujarat University','Commerce Six Road','SP Stadium','Old High Court','Shahpur','Gheekanta','Kalupur Railway Station','Kankaria East','Apparel Park','Amraiwadi','Rabari Colony','Vastral','Nirant Cross Road','Vastral Gam']},
+  red:{name:'Red Line',color:'var(--red)',km:18.87,st:['Motera Stadium','Sabarmati','AEC','Ranip','Vadaj','Vijay Nagar','Usmanpura','Old High Court','Gandhigram','Paldi','Shreyas','Rajiv Nagar','Jivraj Park','APMC']},
+  yellow:{name:'Yellow Line',color:'var(--yellow)',km:23.84,st:['Motera Stadium','Koteshwar Road','Vishwakarma College','Tapovan Circle','Narmada Canal','Koba Circle','Juna Koba','Koba Gam','GNLU','Raysan','Randesan','Dholakuva Circle','Infocity','Sector-1','Sector-10A','Sachivalaya','Akshardham','Juna Sachivalaya','Sector-16','Sector-24','Mahatma Mandir']},
+  violet:{name:'Violet Line',color:'var(--violet)',km:5.42,st:['GNLU','PDEU','GIFT City']}
+};
+const XY={'Thaltej Gam':[70,594],'Thaltej':[120,594],'Doordarshan Kendra':[170,594],'Gurukul Road':[220,594],'Gujarat University':[270,594],'Commerce Six Road':[320,594],'SP Stadium':[370,594],'Old High Court':[430,594],
+'Shahpur':[540,594],'Gheekanta':[592,594],'Kalupur Railway Station':[644,594],'Kankaria East':[696,594],'Apparel Park':[748,594],'Amraiwadi':[800,594],'Rabari Colony':[852,594],'Vastral':[904,594],'Nirant Cross Road':[956,594],'Vastral Gam':[1008,594],
+'Motera Stadium':[430,440],'Sabarmati':[430,462],'AEC':[430,484],'Ranip':[430,506],'Vadaj':[430,528],'Vijay Nagar':[430,550],'Usmanpura':[430,572],'Gandhigram':[430,616],'Paldi':[430,638],'Shreyas':[430,660],'Rajiv Nagar':[430,682],'Jivraj Park':[430,704],'APMC':[430,726],
+'Koteshwar Road':[430,410],'Vishwakarma College':[430,380],'Tapovan Circle':[430,350],'Narmada Canal':[430,320],'Koba Circle':[430,290],'Juna Koba':[430,260],'Koba Gam':[430,230],'GNLU':[430,200],'Raysan':[470,170],'Randesan':[510,140],'Dholakuva Circle':[550,110],'Infocity':[588,84],
+'Sector-1':[640,60],'Sector-10A':[710,60],'Sachivalaya':[780,60],'Akshardham':[850,60],'Juna Sachivalaya':[920,60],'Sector-16':[990,60],'Sector-24':[1060,60],'Mahatma Mandir':[1130,60],'PDEU':[510,250],'GIFT City':[600,290]};
+// label placement: [dx,dy,anchor] or 'rotE'/'rotW' (rotated labels for the Blue Line)
+const LBL={};const setL=(a,v)=>a.forEach(n=>LBL[n]=v);
+setL(['Motera Stadium','Sabarmati','AEC','Ranip','Vadaj','Vijay Nagar','Usmanpura'],[-14,4,'end']);
+setL(['Gandhigram','Paldi','Shreyas','Rajiv Nagar','Jivraj Park','APMC','GIFT City'],[14,4,'start']);
+setL(['Koteshwar Road','Vishwakarma College','Tapovan Circle','Narmada Canal','Koba Circle','Juna Koba','Koba Gam','GNLU'],[-14,4,'end']);
+setL(['Raysan','Randesan','Dholakuva Circle','Infocity','PDEU'],[10,20,'start']);
+setL(['Sector-1','Sachivalaya','Juna Sachivalaya','Sector-24'],[0,-14,'middle']);
+setL(['Sector-10A','Akshardham','Sector-16'],[0,24,'middle']);
+LBL['Mahatma Mandir']=[0,24,'end'];LBL['Old High Court']=[16,-8,'start'];
+setL(['Thaltej Gam','Thaltej','Doordarshan Kendra','Gurukul Road','Gujarat University','Commerce Six Road','SP Stadium'],'rotW');
+setL(['Shahpur','Gheekanta','Kalupur Railway Station','Kankaria East','Apparel Park','Amraiwadi','Rabari Colony','Vastral','Nirant Cross Road','Vastral Gam'],'rotE');
+for(const k in LINES){let px=0;const s=LINES[k].st;for(let i=1;i<s.length;i++)px+=Math.hypot(XY[s[i]][0]-XY[s[i-1]][0],XY[s[i]][1]-XY[s[i-1]][1]);LINES[k].kpx=LINES[k].km/px;} // km per map pixel
+const ALIAS={motera:'Motera Stadium','narendra modi stadium':'Motera Stadium','sardar patel stadium':'Motera Stadium',gift:'GIFT City',mandir:'Mahatma Mandir','gandhinagar capital':'Mahatma Mandir',gandhinagar:'Sachivalaya',secretariat:'Sachivalaya',kalupur:'Kalupur Railway Station','railway station':'Kalupur Railway Station','law university':'GNLU','ghee kanta':'Gheekanta',vasna:'APMC','thaltej village':'Thaltej Gam','akshar dham':'Akshardham','stadium':'SP Stadium','sp':'SP Stadium','high court':'Old High Court','vastral gaam':'Vastral Gam','koba gaam':'Koba Gam','thaltej gaam':'Thaltej Gam','pandit deendayal':'PDEU','pandit deendayal energy university':'PDEU','gift city metro':'GIFT City','sector 1 gandhinagar':'Sector-1'};
+const UNDER=new Set(['Gheekanta','Kalupur Railway Station','Kankaria East','Shahpur']);
+const GAN=new Set(['Narmada Canal','Koba Circle','Juna Koba','Koba Gam','GNLU','Raysan','Randesan','Dholakuva Circle','Infocity','Sector-1','Sector-10A','Sachivalaya','Akshardham','Juna Sachivalaya','Sector-16','Sector-24','Mahatma Mandir','PDEU','GIFT City']);
+const CONNECT={'Sabarmati':'City BRTS','AEC':'City BRTS','Ranip':'City BRTS, GSRTC bus station','Vadaj':'City BRTS','Gandhigram':'Gandhigram railway station','APMC':'GSRTC bus station','Kalupur Railway Station':'Ahmedabad (Kalupur) railway station','Mahatma Mandir':'Gandhinagar Capital railway station','Old High Court':'Blue and Red Line interchange','Motera Stadium':'Red and Yellow Line interchange. Narendra Modi Stadium','GNLU':'Yellow and Violet Line interchange'};
+const OPENED={};const setO=(a,v)=>a.forEach(n=>OPENED[n]=v);
+setO(['Vastral Gam','Nirant Cross Road','Vastral','Rabari Colony','Amraiwadi','Apparel Park'],'Mar 2019');
+setO(['Thaltej Gam'],'Dec 2024');
+setO(['Sector-1','Infocity','Dholakuva Circle','Randesan','GNLU','Raysan','PDEU','GIFT City'],'Sep 2024');
+setO(['Koba Circle','Narmada Canal','Tapovan Circle','Vishwakarma College','Koteshwar Road','Sector-10A','Sachivalaya'],'Apr 2025');
+setO(['Juna Koba','Koba Gam'],'Sep 2025');
+setO(['Akshardham','Juna Sachivalaya','Sector-16','Sector-24','Mahatma Mandir'],'Jan 2026');
+const GEMINI_MODEL='gemini-2.5-flash'; // check the current model name in Google AI Studio
+const ALL=Object.keys(XY).sort((a,b)=>a.localeCompare(b)), CHANGE_MIN=4, KM_PER_MIN=.55;
+const dist=(a,b)=>Math.hypot(XY[a][0]-XY[b][0],XY[a][1]-XY[b][1]);
+const segKm=(a,b,l)=>dist(a,b)*LINES[l].kpx;
+const segMin=(a,b,l)=>Math.max(2,Math.round(segKm(a,b,l)/KM_PER_MIN));
+const linesAt=n=>Object.keys(LINES).filter(k=>LINES[k].st.includes(n));
+const fareFor=km=>[[2,5],[5,10],[12,15],[22,20],[1e9,25]].find(s=>km<=s[0])[1]; // ESTIMATED slabs, verify with GMRC
+
+/* ============ 2. CROWD PREDICTOR ============ */
+const hash=s=>[...s].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7);
+function crowd(n,d=new Date()){const h=d.getHours()+d.getMinutes()/60,g=(m,s)=>Math.exp(-(((h-m)/s)**2));
+  return Math.min(1,.18+.62*Math.max(g(9,1.6),g(18.5,1.8))+(hash(n)%30)/100*.5);}
+const lvl=v=>v<.4?['Low','#34D399']:v<.7?['Medium','#F2A33A']:['High','#F43F5E'];
+function coaches(n){const v=crowd(n),m=Math.floor(Date.now()/60000);return [0,1,2,3,4,5].map(i=>Math.max(.05,Math.min(1,v+.28*Math.sin(i*2.1+m/5))));}
+
+/* ============ 3. ROUTE PLANNER (Dijkstra over station+line states) ============ */
+function plan(from,to,mode='fast'){
+  if(!from||!to||from===to)return null;
+  const W={fast:{h:(a,b,l)=>segMin(a,b,l),c:()=>CHANGE_MIN},cheap:{h:(a,b,l)=>1+.01*segMin(a,b,l),c:()=>.1},
+    few:{h:(a,b,l)=>segMin(a,b,l),c:()=>25},quiet:{h:(a,b,l)=>segMin(a,b,l)*(1+2*crowd(b)),c:n=>CHANGE_MIN+4*crowd(n)}}[mode];
+  const key=(n,l)=>n+'|'+l,D={},P={},done=new Set();let Q=[];
+  linesAt(from).forEach(l=>{D[key(from,l)]=0;Q.push([0,from,l]);});
+  while(Q.length){
+    Q.sort((a,b)=>a[0]-b[0]);const [d,n,l]=Q.shift(),k=key(n,l);
+    if(done.has(k))continue;done.add(k);if(n===to)break;
+    const st=LINES[l].st,i=st.indexOf(n),nb=[];
+    [i-1,i+1].forEach(j=>{if(st[j])nb.push([st[j],l,W.h(n,st[j],l)]);});
+    linesAt(n).forEach(l2=>{if(l2!==l)nb.push([n,l2,W.c(n)]);});
+    nb.forEach(([n2,l2,w])=>{const k2=key(n2,l2);if(d+w<(D[k2]??Infinity)){D[k2]=d+w;P[k2]=k;Q.push([d+w,n2,l2]);}});
+  }
+  let best=null;linesAt(to).forEach(l=>{const k=key(to,l);if(D[k]!==undefined&&(best===null||D[k]<D[best]))best=k;});
+  if(!best)return null;
+  const seq=[];for(let k=best;k;k=P[k]){const [n,l]=k.split('|');seq.unshift({n,l});}
+  let legs=[];seq.forEach(({n,l})=>{const last=legs[legs.length-1];
+    if(last&&last.line===l){if(last.stations.at(-1)!==n)last.stations.push(n);}else legs.push({line:l,stations:[n]});});
+  legs=legs.filter(x=>x.stations.length>1);
+  let stops=0,time=0,km=0;legs.forEach(l=>{stops+=l.stations.length-1;for(let i=1;i<l.stations.length;i++){time+=segMin(l.stations[i-1],l.stations[i],l.line);km+=segKm(l.stations[i-1],l.stations[i],l.line);}});
+  const changes=legs.length-1;time+=changes*CHANGE_MIN;km=+km.toFixed(1);
+  return {from,to,legs,stops,changes,time,fare:fareFor(km),km,co2:+(km*.09).toFixed(2),mode};
+}
+
+/* ============ 4. SEARCH + VOICE PARSING ============ */
+const norm=s=>(s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+const BYLEN=[...ALL].sort((a,b)=>b.length-a.length);
+const hasWord=(t,w)=>(' '+t+' ').includes(' '+w+' ');
+function lev(a,b){const m=[...Array(a.length+1)].map((_,i)=>[i]);for(let j=1;j<=b.length;j++)m[0][j]=j;
+  for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return m[a.length][b.length];}
+function findStation(t){
+  t=norm(t);if(!t)return null;
+  if(ALIAS[t])return ALIAS[t];
+  let m=ALL.find(n=>norm(n)===t);if(m)return m;
+  m=BYLEN.find(n=>hasWord(t,norm(n)));if(m)return m;
+  m=ALL.find(n=>t.length>=3&&norm(n).startsWith(t))||ALL.find(n=>t.length>=4&&norm(n).includes(t));if(m)return m;
+  for(const a in ALIAS)if(a.length>3&&hasWord(t,a))return ALIAS[a];
+  let best=null,bd=99;ALL.forEach(n=>{const x=norm(n),d=lev(x,t);if(d<bd){bd=d;best=n;}});
+  return bd<=Math.max(1,Math.floor(t.length/4))?best:null;}
+function parseTrip(t){
+  const m=(t||'').toLowerCase().match(/(?:from\s+)?(.+?)\s+(?:se|to)\s+(.+)/);if(!m)return {};
+  const c=s=>s.replace(/\b(please|route|go|want|need|me|i|how|can|get|metro|the|jana hai|jana|jao|tak|hai)\b/g,' ').replace(/\s+/g,' ').trim();
+  return {from:findStation(c(m[1])),to:findStation(c(m[2]))};}
+function mentioned(t){t=norm(t);const hits=[];
+  ALL.forEach(n=>{const x=norm(n),i=(' '+t+' ').indexOf(' '+x+' ');if(i>=0)hits.push([i,n]);});
+  for(const a in ALIAS){const i=(' '+t+' ').indexOf(' '+a+' ');if(i>=0)hits.push([i,ALIAS[a]]);}
+  return [...new Set(hits.sort((x,y)=>x[0]-y[0]).map(x=>x[1]))];}
+
+/* ============ 5. MAP ============ */
+let zoom=1,pick='from';
+function mapSVG(legs){
+  let s='<svg id="map" viewBox="0 0 1200 780" role="img" aria-label="Ahmedabad and Gandhinagar metro map">',on=new Set();
+  for(const k in LINES)s+=`<polyline points="${LINES[k].st.map(n=>XY[n]).join(' ')}" fill="none" stroke="${LINES[k].color}" stroke-width="${legs?5:8}" opacity="${legs?.28:1}" stroke-linecap="round" stroke-linejoin="round"/>`;
+  if(legs)legs.forEach(l=>{const p=l.stations.map(n=>{on.add(n);return XY[n];}).join(' ');
+    s+=`<polyline points="${p}" fill="none" stroke="${LINES[l.line].color}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><polyline class="flow" points="${p}" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 14" stroke-linecap="round"/>`;});
+  ALL.forEach(n=>{const [x,y]=XY[n],ic=linesAt(n).length>1,hot=on.has(n);
+    s+=`<circle data-st="${n}" cx="${x}" cy="${y}" r="${ic?11:7}" fill="${ic?'var(--tx)':'var(--st)'}" stroke="${ic?'var(--st)':'var(--tx)'}" stroke-width="${hot?5:3}"><title>${n}</title></circle>`;
+    const L=LBL[n]||[14,4,'start'];
+    if(L==='rotE')s+=`<text class="lbl" transform="translate(${x+3} ${y-14}) rotate(-40)">${n}</text>`;
+    else if(L==='rotW')s+=`<text class="lbl" text-anchor="end" transform="translate(${x-3} ${y+16}) rotate(-40)">${n}</text>`;
+    else s+=`<text class="lbl" x="${x+L[0]}" y="${y+L[1]}" text-anchor="${L[2]}">${n}</text>`;});
+  return s+'<g id="trains"></g></svg>';
+}
+const legend=()=>`<div class="legend">${Object.values(LINES).map(l=>`<span><i style="background:${l.color}"></i>${l.name}</span>`).join('')}<span>Large dot = interchange</span></div>`;
+function applyZoom(){const m=$('#map');if(m){m.style.width=(zoom*100)+'%';m.style.minWidth=(860*zoom)+'px';}}
+const zoomBar=()=>`<div class="zoom"><button class="ghost" data-z="-1" aria-label="Zoom out">-</button><button class="ghost" data-z="0" aria-label="Reset zoom">Reset</button><button class="ghost" data-z="1" aria-label="Zoom in">+</button></div>`;
+
+/* ============ 6. VOICE SEARCH (with animation) ============ */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null,fakeT=0;
+$('#bars').innerHTML=[...Array(11)].map((_,i)=>`<i style="animation-delay:${(i*.09).toFixed(2)}s"></i>`).join('');
+function stopVoice(){clearTimeout(fakeT);try{rec&&rec.abort();}catch(e){}$('#voice').hidden=true;}
+function listen(cb){
+  const finish=t=>{clearTimeout(fakeT);setTimeout(()=>{$('#voice').hidden=true;cb(t);},650);};
+  $('#voice').hidden=false;$('#vtext').textContent='Listening... say "Vastral Gam to Mahatma Mandir"';
+  if(!SR){fakeT=setTimeout(()=>{$('#vtext').textContent='"Vastral Gam to Mahatma Mandir"';finish('Vastral Gam to Mahatma Mandir');},2200);return;} // demo fallback
+  rec=new SR();rec.lang=($('#vlang')||{}).value||'en-IN';rec.interimResults=true;
+  rec.onresult=e=>{let t='';for(const r of e.results)t+=r[0].transcript;$('#vtext').textContent='"'+t+'"';if(e.results[e.results.length-1].isFinal)finish(t);};
+  rec.onerror=()=>{$('#vtext').textContent='Microphone blocked. Allow mic access or type the station name.';setTimeout(stopVoice,1800);};
+  rec.start();
+}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2400);}
+function applyVoice(text,target){
+  const p=parseTrip(text);
+  if(p.from&&p.to&&$('#from')){$('#from').value=p.from;$('#to').value=p.to;doPlan();return;}
+  const s=findStation(text);
+  if(s&&target&&$('#'+target)){$('#'+target).value=s;toast(s+' selected');}else toast('Could not find that station. Please try again.');
+}
+
+/* ============ 7. PAGES ============ */
+let lastRoute=null,pref={from:null,to:null},raf=0,selSt='Motera Stadium',selT=-1,delayLine=null;
+const tp=n=>`<span class="badge" style="background:${lvl(crowd(n))[1]}">${lvl(crowd(n))[0]}</span>`;
+const micSvg='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>';
+const lchips=n=>linesAt(n).map(k=>`<span class="lchip"><i style="background:${LINES[k].color}"></i>${LINES[k].name}</span>`).join('');
+
+function pagePlanner(){
+  const f=pref.from||(lastRoute&&lastRoute.from)||'Vastral Gam',t=pref.to||(lastRoute&&lastRoute.to)||'Mahatma Mandir',md=(lastRoute&&lastRoute.mode)||'fast';pref={from:null,to:null};
+  $('#app').innerHTML=`<section class="top"><div class="col">
+    <div class="pill"><span class="dot"></span>${ALL.length} stations · 4 lines · Ahmedabad to Gandhinagar</div>
+    <h1>Ahmedabad to Gandhinagar, <span>by metro.</span></h1>
+    <p class="mut" style="font-size:17px;line-height:1.55;max-width:520px">Plan any trip across the Blue, Red, Yellow and Violet lines. Search by voice, see crowd levels and book a QR ticket.</p>
+    <form id="pf" class="card" style="margin-top:20px">
+      <label class="fld">From<input id="from" list="sts" value="${f}" autocomplete="off"><button type="button" class="mic" data-mic="from" aria-label="Say the From station">${micSvg}</button></label>
+      <label class="fld">To<input id="to" list="sts" value="${t}" autocomplete="off"><button type="button" class="mic" data-mic="to" aria-label="Say the To station">${micSvg}</button></label>
+      <datalist id="sts">${ALL.map(n=>`<option value="${n}">`).join('')}</datalist>
+      <div class="modes" role="radiogroup" aria-label="Route preference">${[['fast','Fastest'],['cheap','Cheapest'],['quiet','Least crowded'],['few','Fewest changes']].map(([v,x])=>`<label><input type="radio" name="mode" value="${v}" ${md===v?'checked':''}><span>${x}</span></label>`).join('')}</div>
+      <div class="row"><button class="btn" style="flex:1 1 150px">Find route</button><button type="button" class="ghost" id="vgo">Ask by voice</button>
+      <select id="vlang" style="width:auto;margin:0;min-height:44px" aria-label="Voice language"><option value="en-IN">English</option><option value="hi-IN">Hindi</option></select></div>
+    </form></div>
+    <div class="col" id="res"></div></section>
+  <section class="card"><div class="row between"><h2 style="margin:0">Network map</h2>${zoomBar()}</div>
+    <p class="mut" style="font-size:13px;margin:8px 0 12px">Tap a station to set From, then To. Scroll the map sideways on small screens.</p>
+    <div class="mapwrap" id="mapbox">${mapSVG()}</div>${legend()}</section>`;
+  applyZoom();doPlan();
+}
+function doPlan(){
+  const f=findStation($('#from').value),t=findStation($('#to').value),mode=(document.querySelector('input[name=mode]:checked')||{}).value||'fast';
+  if(!f||!t){toast('Please choose valid stations');return;}
+  if(f===t){toast('From and To must be different');return;}
+  $('#from').value=f;$('#to').value=t;
+  const r=plan(f,t,mode);if(!r){toast('No route found');return;}
+  lastRoute=r;showRoute(r);
+}
+function showRoute(r){
+  const co=coaches(r.from),bi=co.indexOf(Math.min(...co));
+  $('#mapbox').innerHTML=mapSVG(r.legs);applyZoom();
+  $('#res').innerHTML=`<div class="card">
+    <h2>${r.from} to ${r.to}</h2>
+    <div class="stats"><div><b>${r.time}</b>minutes</div><div><b>₹${r.fare}</b>est. fare</div><div><b>${r.changes}</b>changes</div><div><b>${r.stops}</b>stops</div></div>
+    <ol class="legs">${r.legs.map(l=>`<li style="--c:${LINES[l.line].color}"><b>${LINES[l.line].name}</b><br>${l.stations[0]} to ${l.stations.at(-1)} <span class="mut">(${l.stations.length-1} stops towards ${LINES[l.line].st[LINES[l.line].st.indexOf(l.stations.at(-1))>LINES[l.line].st.indexOf(l.stations[0])?LINES[l.line].st.length-1:0]})</span></li>`).join('')}</ol>
+    <div style="font-size:14px">Crowd at ${r.from} now: ${tp(r.from)}</div>
+    <div class="coach" aria-label="Crowd level in each of 6 coaches">${co.map(v=>`<i title="${Math.round(v*100)}% full" style="background:${lvl(v)[1]}"></i>`).join('')}</div>
+    <div class="mut" style="font-size:13px;margin-bottom:12px">Coach ${bi+1} is the least crowded right now. Distance about ${r.km} km.</div>
+    <div class="eco">This trip saves roughly <b>${r.co2} kg CO₂</b> compared with a car.</div>
+    <button class="btn" id="book" style="width:100%">Book ticket (QR)</button></div>`;
+}
+
+/* ---- Live tracker (simulated trains) ---- */
+const LP={};for(const k in LINES){const pts=LINES[k].st.map(n=>XY[n]),cum=[0];
+  for(let i=1;i<pts.length;i++)cum.push(cum[i-1]+Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]));LP[k]={pts,cum,len:cum.at(-1)};}
+const TRAINS=[];const TCOUNT={blue:3,red:3,yellow:4,violet:1};
+for(const k in LINES)for(let i=0;i<TCOUNT[k];i++)TRAINS.push({k,u:i*LP[k].len*2/TCOUNT[k]});
+const SPEED=34;
+function posAt(k,s){const {pts,cum}=LP[k];let i=1;while(i<cum.length-1&&cum[i]<s)i++;const t=(s-cum[i-1])/(cum[i]-cum[i-1]||1);
+  return [pts[i-1][0]+(pts[i][0]-pts[i-1][0])*t,pts[i-1][1]+(pts[i][1]-pts[i-1][1])*t];}
+function tState(tr){const {len,cum}=LP[tr.k],dir=tr.u<len?1:-1,s=tr.u<len?tr.u:2*len-tr.u,[x,y]=posAt(tr.k,s);
+  const ni=dir>0?cum.findIndex(c=>c>=s):cum.length-1-[...cum].reverse().findIndex(c=>c<=s);
+  return {x,y,dir,s,next:LINES[tr.k].st[ni]};}
+function eta(tr,name){const {len,cum}=LP[tr.k],d=cum[LINES[tr.k].st.indexOf(name)],{dir,s}=tState(tr);
+  const px=dir>0?(s<=d?d-s:(len-s)+(len-d)):(s>=d?s-d:s+d);return Math.ceil(px*LINES[tr.k].kpx/KM_PER_MIN);}
+const etaT=m=>m<=0?'Arriving':m+' min';
+function pageLive(){
+  $('#app').innerHTML=`<section style="padding:12px 0 40px"><div class="row between" style="margin-bottom:12px"><h1 style="font-size:clamp(26px,4vw,40px)">Live tracker</h1>${zoomBar()}</div>
+  <p class="mut" style="margin:0 0 14px;font-size:14px">Train positions are simulated for this demo. Tap a train or a station for details.</p>
+  <div class="card"><div class="mapwrap" id="mapbox">${mapSVG()}</div>${legend()}</div>
+  <div class="grid3">
+    <div class="card"><h2>Line status</h2><div id="lines"></div>
+      <div class="row" style="margin-top:12px"><select id="dlsel" style="width:auto;margin:0;min-height:44px" aria-label="Line to delay">${Object.keys(LINES).map(k=>`<option value="${k}">${LINES[k].name}</option>`).join('')}</select><button class="ghost" id="dly">Simulate delay</button></div><div id="alert"></div></div>
+    <div class="card"><h2>Station arrivals</h2><label class="fld" style="margin:0 0 8px">Station<select id="selst">${ALL.map(n=>`<option ${n===selSt?'selected':''}>${n}</option>`).join('')}</select></label><div id="board"></div></div>
+    <div class="card" id="tinfo"><h2>Train details</h2><span class="mut">Tap a train on the map.</span></div></div></section>`;
+  applyZoom();
+  $('#trains').innerHTML=TRAINS.map((t,i)=>`<g class="tr" data-t="${i}"><circle r="15" fill="${LINES[t.k].color}" opacity=".3"/><circle r="8" fill="#fff" stroke="${LINES[t.k].color}" stroke-width="3.5"/></g>`).join('');
+  let last=0,acc=9;
+  const frame=ts=>{const dt=Math.min(.1,(ts-last)/1000||0);last=ts;acc+=dt;
+    TRAINS.forEach((t,i)=>{t.u=(t.u+SPEED*dt*(delayLine===t.k?.3:1))%(2*LP[t.k].len);const s=tState(t);
+      const el=$(`.tr[data-t="${i}"]`);if(el)el.setAttribute('transform',`translate(${s.x} ${s.y})`);});
+    if(acc>.5){acc=0;refreshLive();}raf=requestAnimationFrame(frame);};
+  raf=requestAnimationFrame(frame);
+}
+function refreshLive(){
+  const L=$('#lines');if(!L)return;
+  L.innerHTML=Object.keys(LINES).map(k=>{const bad=delayLine===k;return `<div class="brow"><span><b style="color:${LINES[k].color}">●</b> ${LINES[k].name}</span><span style="color:${bad?'#F43F5E':'#34D399'};font-weight:700">${bad?'Delay: about 7 min':'Normal'}</span></div>`;}).join('');
+  $('#alert').innerHTML=delayLine?`<div class="alert">${LINES[delayLine].name} is running late. Allow extra time and check interchange stations for alternatives.</div>`:'';
+  const rows=[];TRAINS.forEach(t=>{if(LINES[t.k].st.includes(selSt)){const s=tState(t);rows.push({k:t.k,e:eta(t,selSt),to:s.dir>0?LINES[t.k].st.at(-1):LINES[t.k].st[0]});}});
+  rows.sort((a,b)=>a.e-b.e);
+  $('#board').innerHTML=`<div class="brow"><b>${selSt}</b><span>Crowd ${tp(selSt)}</span></div>`+rows.slice(0,6).map(r=>`<div class="brow"><span><b style="color:${LINES[r.k].color}">●</b> Towards ${r.to}</span><b>${etaT(r.e)}</b></div>`).join('');
+  if(selT>=0){const t=TRAINS[selT],s=tState(t);$('#tinfo').innerHTML=`<h2>${LINES[t.k].name}, train ${selT+1}</h2><div class="brow"><span>Next station</span><b>${s.next}</b></div><div class="brow"><span>Arrives in</span><b>${etaT(eta(t,s.next))}</b></div><div class="brow"><span>Towards</span><b>${s.dir>0?LINES[t.k].st.at(-1):LINES[t.k].st[0]}</b></div><div class="brow"><span>Crowd onboard</span>${tp(s.next)}</div>`;}
+}
+
+/* ---- Stations directory ---- */
+function pageStations(){
+  $('#app').innerHTML=`<section style="padding:12px 0 40px"><h1 style="font-size:clamp(26px,4vw,40px);margin-bottom:6px">All stations</h1>
+  <p class="mut" style="margin:0 0 16px">${ALL.length} operational stations on 4 lines. Tap From or To to plan a trip.</p>
+  <div class="card row"><label class="fld" style="flex:2 1 220px;margin:0">Search<input id="sq" placeholder="Type a station name" style="padding-right:14px" autocomplete="off"></label>
+  <label class="fld" style="flex:1 1 180px;margin:0">Line<select id="fl"><option value="all">All lines</option>${Object.keys(LINES).map(k=>`<option value="${k}">${LINES[k].name}</option>`).join('')}</select></label></div>
+  <div class="sgrid" id="sgrid"></div>
+  <div class="card mut" style="margin-top:16px;font-size:14px"><b>Under construction:</b> Sabarmati Railway Station (Red Line). It is not included in route planning until it opens.</div></section>`;
+  drawStations();
+}
+function drawStations(){
+  const q=norm($('#sq').value),f=$('#fl').value;
+  const list=ALL.filter(n=>(!q||norm(n).includes(q))&&(f==='all'||linesAt(n).includes(f)));
+  $('#sgrid').innerHTML=list.map(n=>`<div class="card"><h3 style="font-size:16px;margin-bottom:10px">${n}</h3><div>${lchips(n)}</div>
+    <div class="brow"><span class="mut">City</span><span>${GAN.has(n)?'Gandhinagar area':'Ahmedabad'}</span></div>
+    <div class="brow"><span class="mut">Layout</span><span>${UNDER.has(n)?'Underground':'Elevated'}</span></div>
+    <div class="brow"><span class="mut">Opened</span><span>${OPENED[n]||'Sep 2022'}</span></div>
+    <div class="brow"><span class="mut">Crowd now</span>${tp(n)}</div>
+    ${CONNECT[n]?`<div class="mut" style="font-size:13px;margin-top:8px">${CONNECT[n]}</div>`:''}
+    <div class="row" style="margin-top:12px"><button class="ghost" data-sf="${n}">From here</button><button class="ghost" data-stt="${n}">To here</button></div></div>`).join('')||'<div class="card mut">No stations match your search.</div>';
+}
+
+/* ---- AI assistant ---- */
+let chat=[{r:'bot',t:'Hi! I am Metro Saathi. Ask me about routes, fares, crowd levels or stations on the Ahmedabad and Gandhinagar metro.'}];
+const SUGG=['Vastral Gam to Mahatma Mandir','Cheapest route from Kalupur to GIFT City','How crowded is Paldi now?','Which line goes to GIFT City?'];
+function pageAI(){
+  $('#app').innerHTML=`<section style="max-width:780px;margin:0 auto;padding:12px 0 40px"><h1 style="font-size:clamp(26px,4vw,40px);margin-bottom:16px">Assistant</h1>
+  <div class="card"><div class="chat" id="chat" aria-live="polite"></div>
+  <div class="sugg">${SUGG.map(s=>`<button class="ghost" data-sg="${s}">${s}</button>`).join('')}</div>
+  <form id="cf" class="row" style="flex-wrap:nowrap"><input id="cq" placeholder="Ask about a route or station" autocomplete="off" style="margin:0;padding-right:14px" aria-label="Your question"><button type="button" class="ghost" data-mic="cq" aria-label="Ask by voice">${micSvg}</button><button class="btn" style="min-height:50px">Send</button></form></div>
+  <details class="card"><summary style="cursor:pointer;font-weight:700">Use Gemini (optional)</summary>
+  <p class="mut" style="font-size:14px">Paste a Gemini API key to get answers from Gemini. Without a key, the built-in assistant answers using the metro data. The key is saved only in this browser. Delete it after your demo.</p>
+  <div class="row"><input id="gk" type="password" placeholder="Gemini API key" value="${localStorage.getItem('gkey')||''}" style="margin:0;flex:1;padding-right:14px" aria-label="Gemini API key"><button class="ghost" id="gs">Save key</button></div></details></section>`;
+  drawChat();
+}
+function drawChat(){const c=$('#chat');if(!c)return;c.innerHTML=chat.map(m=>`<div class="msg ${m.r==='me'?'me':'bot'}">${m.t.replace(/</g,'&lt;')}</div>`).join('');c.scrollTop=c.scrollHeight;}
+function routeText(r){if(!r)return 'I could not find that route.';const co=coaches(r.from),bi=co.indexOf(Math.min(...co))+1;
+  return `${r.from} to ${r.to}: `+r.legs.map(l=>`${LINES[l.line].name} (${l.stations[0]} to ${l.stations.at(-1)})`).join(', then ')+`.\n${r.time} min, about ${r.km} km, estimated fare ₹${r.fare}, ${r.changes} change${r.changes===1?'':'s'}. Coach ${bi} is the least crowded at ${r.from} right now.`;}
+function localAnswer(q){
+  const l=q.toLowerCase(),m=mentioned(q);
+  const ln=Object.keys(LINES).find(k=>l.includes(k+' line')||(l.includes(k)&&/line|stations/.test(l)));
+  if(ln&&/(list|all|stations on|which stations)/.test(l)&&!m.length)return LINES[ln].name+' stations:\n'+LINES[ln].st.join(', ')+'.';
+  if(/which line|what line|line goes|how to reach|how do i reach/.test(l)&&m.length===1&&!/ to /.test(l)){const ls=linesAt(m[0]).map(k=>LINES[k].name);return `${m[0]} is on the ${ls.join(' and ')}.`;}
+  const mode=/cheap|fare|cost|price/.test(l)?'cheap':/crowd|rush|empty|busy/.test(l)?'quiet':/change|interchange/.test(l)?'few':'fast';
+  let p=parseTrip(q);if(!(p.from&&p.to)){if(m.length>=2)p={from:m[0],to:m[1]};else if(m.length===1&&/(go|reach|route|to )/.test(l)&&!/crowd|busy|rush/.test(l))p={from:(lastRoute&&lastRoute.from!==m[0]?lastRoute.from:'Motera Stadium'),to:m[0]};}
+  if(p.from&&p.to&&p.from!==p.to)return routeText(plan(p.from,p.to,mode));
+  if(m.length===1)return `Crowd at ${m[0]} right now is ${lvl(crowd(m[0]))[0]} (${Math.round(crowd(m[0])*100)}%).`;
+  return 'Try: "Vastral Gam to Mahatma Mandir", "How crowded is Paldi now?" or "List Violet Line stations".';
+}
+async function askGemini(q){
+  const key=localStorage.getItem('gkey');if(!key)return null;
+  const p=parseTrip(q),m=mentioned(q);let extra='';const a=p.from||m[0],b=p.to||m[1];
+  if(a&&b&&a!==b)extra='\nPlanner result: '+routeText(plan(a,b,'fast'));
+  const data=JSON.stringify({lines:Object.fromEntries(Object.values(LINES).map(v=>[v.name,v.st])),interchanges:{'Old High Court':'Blue/Red','Motera Stadium':'Red/Yellow','GNLU':'Yellow/Violet'},fare:'Estimated Rs5 to Rs25 by distance'});
+  const body={systemInstruction:{parts:[{text:'You are Metro Saathi, an assistant for the Ahmedabad and Gandhinagar metro. Reply in the same language as the user, in at most 3 short sentences. Use only this data: '+data}]},contents:[{role:'user',parts:[{text:q+extra}]}]};
+  const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${key}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const j=await r.json();return j.candidates&&j.candidates[0].content.parts[0].text;
+}
+async function sendChat(q){
+  chat.push({r:'me',t:q},{r:'bot',t:'...'});drawChat();let a=null;
+  try{a=await askGemini(q);}catch(e){a=null;}
+  chat[chat.length-1].t=a||localAnswer(q);drawChat();
+}
+
+/* ---- Tickets ---- */
+const getT=()=>JSON.parse(localStorage.getItem('tickets')||'[]');
+function book(r){const a=getT();a.unshift({id:'MS'+Math.random().toString(36).slice(2,8).toUpperCase(),from:r.from,to:r.to,fare:r.fare,time:r.time,co2:r.co2,at:new Date().toLocaleString()});
+  localStorage.setItem('tickets',JSON.stringify(a));location.hash='#/tickets';}
+function pageTickets(){
+  const a=getT(),co=a.reduce((s,t)=>s+t.co2,0).toFixed(2);
+  $('#app').innerHTML=`<section style="max-width:780px;margin:0 auto;padding:12px 0 40px"><h1 style="font-size:clamp(26px,4vw,40px);margin-bottom:16px">My tickets</h1>
+  <div class="eco">You have saved about <b>${co} kg CO₂</b> by taking the metro.</div>
+  ${a.length?a.map(t=>`<div class="card tk"><div class="qr" id="qr-${t.id}"></div><div><h2 style="font-size:18px">${t.from} to ${t.to}</h2><div class="mut">₹${t.fare} · ${t.time} min · ${t.at}</div><div style="margin-top:6px">Ticket ID: <b>${t.id}</b></div></div></div>`).join(''):'<div class="card mut">No tickets yet. Plan a route and tap Book ticket.</div>'}</section>`;
+  a.forEach(t=>{const el=$('#qr-'+t.id),txt=JSON.stringify({id:t.id,from:t.from,to:t.to,fare:t.fare});
+    if(window.QRCode)new QRCode(el,{text:txt,width:120,height:120});else el.textContent=t.id;});
+}
+
+
+/* ---- Info pages (About, FAQ, Accessibility, Privacy, Terms) ---- */
+const HELP='<div class="card"><b>Need help?</b><br>GMRC passenger helpline: <a href="tel:+917922960123">+91-79-22960123</a> · <a href="mailto:care@gujaratmetrorail.com">care@gujaratmetrorail.com</a></div>';
+const FAQ=[
+ ['Is Metro Saathi the official Ahmedabad Metro app?','No. It is an independent demo built from public GMRC information. For official services, use the GMRC website or helpline.'],
+ ['Which stations are covered?','All 53 operational stations on the Blue, Red, Yellow and Violet lines, from Thaltej Gam and Vastral Gam to Mahatma Mandir and GIFT City.'],
+ ['Are the train positions real?','No. Train positions and arrival times are simulated for the demo. Real-time data is not public.'],
+ ['How is the fare calculated?','The app shows an estimated fare based on distance. Please confirm the exact fare at the station or on the GMRC website.'],
+ ['What does the crowd level mean?','It is a prediction based on the time of day and the station. It is not a live sensor reading.'],
+ ['Where do I report a lost item?','Report it at any station, or contact GMRC customer care on +91-79-22960123 or care@gujaratmetrorail.com. The lost and found office is at Apparel Park Depot, open 10:30 to 18:10.'],
+ ['Who do I call in an emergency?','Call 112 for police, fire or ambulance, and 181 for the women helpline. Inside a station or train, alert the staff.'],
+ ['Is my ticket valid for travel?','Tickets in this app are demo tickets only and cannot be used to enter the metro. Buy a valid ticket or card from GMRC.']];
+const INFO={
+ about:['About Metro Saathi','<div class="card"><p>Metro Saathi helps people travel the Ahmedabad and Gandhinagar metro with less guesswork. It combines a route planner, a station directory, a simulated live tracker, a crowd predictor, voice search and an assistant.</p><p>It covers 53 stations on 4 lines, from Thaltej Gam and Vastral Gam in Ahmedabad to Mahatma Mandir and GIFT City in Gandhinagar.</p><p class="mut">Built for the Google DevFest hackathon. This is an independent project and is not affiliated with GMRC.</p></div>'+HELP],
+ faq:['Frequently asked questions',FAQ.map(([q,a])=>`<details class="card"><summary style="cursor:pointer;font-weight:700">${q}</summary><p class="mut" style="margin:10px 0 0;line-height:1.6">${a}</p></details>`).join('')+HELP],
+ accessibility:['Accessibility','<div class="card"><p>We want everyone to be able to use Metro Saathi.</p><ul style="line-height:1.8"><li>Every page works with a keyboard and shows a clear focus outline.</li><li>Buttons and inputs are at least 44px tall for easy tapping.</li><li>Dark and light themes with high contrast text.</li><li>Voice search for people who prefer to speak.</li><li>The map can be zoomed and scrolled. The Stations page gives the same information as a list.</li><li>Animations stop if your device is set to reduce motion.</li></ul><p class="mut">If something is hard to use, please tell us through the GMRC feedback channels below so it can be fixed.</p></div>'+HELP],
+ privacy:['Privacy policy','<div class="card"><p>Metro Saathi does not need an account and does not have its own server.</p><ul style="line-height:1.8"><li><b>Stored on your device:</b> your theme choice, your demo tickets and, if you add one, your Gemini API key. This stays in your browser only.</li><li><b>Voice search:</b> uses your browser speech service. In Chrome the audio may be processed by Google. We never receive it.</li><li><b>Gemini assistant (optional):</b> if you add a key, your questions are sent to Google to get an answer.</li><li>We do not sell data and we do not use advertising trackers.</li></ul><p class="mut">You can clear all saved data from your browser settings at any time.</p></div>'],
+ terms:['Terms of use','<div class="card"><ul style="line-height:1.8"><li>Metro Saathi is a demo provided as is, without any warranty.</li><li>Routes, times, crowd levels and fares are estimates. Do not rely on them for time-critical travel. Check with GMRC.</li><li>Tickets created here are for demonstration only. They are not valid for entry to the metro.</li><li>Names and data of GMRC and the Ahmedabad Metro belong to their owners.</li></ul></div>'+HELP]
+};
+function pageInfo(k){const [t,b]=INFO[k];$('#app').innerHTML=`<section style="max-width:780px;margin:0 auto;padding:12px 0 40px"><h1 style="font-size:clamp(26px,4vw,40px);margin-bottom:18px">${t}</h1>${b}</section>`;}
+
+/* ============ 8. ROUTER, THEME, EVENTS ============ */
+function render(){
+  cancelAnimationFrame(raf);const h=location.hash||'#/';
+  $$('#nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')===h));
+  const k=h.slice(2);
+  if(INFO[k])pageInfo(k);else ({'#/':pagePlanner,'#/live':pageLive,'#/stations':pageStations,'#/ai':pageAI,'#/tickets':pageTickets}[h]||pagePlanner)();
+  window.scrollTo(0,0);
+}
+function setTheme(t){document.documentElement.dataset.theme=t;localStorage.setItem('theme',t);$('#tg').textContent=t==='dark'?'Light mode':'Dark mode';}
+$('#tg').onclick=()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
+$('#vx').onclick=stopVoice;
+addEventListener('hashchange',render);
+document.addEventListener('submit',e=>{e.preventDefault();
+  if(e.target.id==='pf')doPlan();
+  if(e.target.id==='cf'){const q=$('#cq').value.trim();if(q){$('#cq').value='';sendChat(q);}}});
+document.addEventListener('input',e=>{if(e.target.id==='sq')drawStations();});
+document.addEventListener('change',e=>{if(e.target.id==='fl')drawStations();if(e.target.id==='selst'){selSt=e.target.value;refreshLive();}});
+document.addEventListener('click',e=>{
+  const T=e.target,mic=T.closest('[data-mic]');
+  if(T.id==='totop'){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});return;}
+  if(mic){const tg=mic.dataset.mic;listen(t=>tg==='cq'?sendChat(t):applyVoice(t,tg));return;}
+  if(T.id==='vgo'){listen(t=>applyVoice(t,null));return;}
+  if(T.id==='book'&&lastRoute){book(lastRoute);return;}
+  if(T.id==='gs'){localStorage.setItem('gkey',$('#gk').value.trim());toast('Key saved');return;}
+  if(T.id==='dly'){const k=$('#dlsel').value;delayLine=delayLine===k?null:k;T.textContent=delayLine?'Clear delay':'Simulate delay';refreshLive();return;}
+  const z=T.closest('[data-z]');if(z){zoom=z.dataset.z==='0'?1:Math.max(1,Math.min(3,zoom+(+z.dataset.z)*.5));applyZoom();return;}
+  const sg=T.closest('[data-sg]');if(sg){sendChat(sg.dataset.sg);return;}
+  const sf=T.closest('[data-sf]');if(sf){pref.from=sf.dataset.sf;location.hash='#/';return;}
+  const stt=T.closest('[data-stt]');if(stt){pref.to=stt.dataset.stt;location.hash='#/';return;}
+  const st=T.closest('[data-st]');
+  if(st&&$('#selst')){selSt=st.dataset.st;$('#selst').value=selSt;refreshLive();return;}
+  if(st&&$('#from')){const n=st.dataset.st;$('#'+pick).value=n;toast((pick==='from'?'From: ':'To: ')+n);pick=pick==='from'?'to':'from';if(pick==='from')doPlan();return;}
+  const tr=T.closest('.tr');if(tr){selT=+tr.dataset.t;refreshLive();}
+});
+setTheme(localStorage.getItem('theme')||'dark');
+render();
+</script>
+</body>
+</html>
